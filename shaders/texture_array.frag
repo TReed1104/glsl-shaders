@@ -1,11 +1,11 @@
 #version 330
-#include components/fragment_in.glsl
+#include glsl-shaders/components/fragment_in.glsl
 
-#include components/fragment_out.glsl
+#include glsl-shaders/components/fragment_out.glsl
 
-#include components/global_uniforms.glsl
+#include glsl-shaders/components/global_uniforms.glsl
 
-#include components/texture_uniforms.glsl
+#include glsl-shaders/components/texture_uniforms.glsl
 uniform int u_textureArrayLayer;
 
 void main() {

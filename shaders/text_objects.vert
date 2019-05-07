@@ -1,9 +1,9 @@
 #version 330
-#include components/vertex_in.glsl
+#include glsl-shaders/components/vertex_in.glsl
 
-#include components/vertex_out.glsl
+#include glsl-shaders/components/vertex_out.glsl
 
-#include components/mvp_uniforms.glsl
+#include glsl-shaders/components/mvp_uniforms.glsl
 
 void main() {
 	fragmentColour = vertexColor;

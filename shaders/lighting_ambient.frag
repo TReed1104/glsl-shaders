@@ -1,11 +1,11 @@
 #version 330
-#include components/fragment_in.glsl
+#include glsl-shaders/components/fragment_in.glsl
 
-#include components/fragment_out.glsl
+#include glsl-shaders/components/fragment_out.glsl
 
-#include components/global_uniforms.glsl
+#include glsl-shaders/components/global_uniforms.glsl
 
-#include components/lighting_uniforms.glsl
+#include glsl-shaders/components/lighting_uniforms.glsl
 
 void main() {
     // Ambient calculations
