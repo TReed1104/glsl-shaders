@@ -5,8 +5,7 @@
 
 #include glsl-shaders/components/global_uniforms.glsl
 
-#include glsl-shaders/components/texture_uniforms.glsl
-uniform int u_textureArrayLayer;
+#include glsl-shaders/components/texture_array_uniforms.glsl
 
 void main() {
 	if (u_hasTexture) {
