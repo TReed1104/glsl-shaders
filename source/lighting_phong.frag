@@ -13,11 +13,11 @@ void main() {
     
     // Diffuse calculations
     vec3 lightDirection = normalize(lightingPosition - fragmentPosition);
-    vec3 diffuse = max(dot(normalize(normal), lightDirection), 0.0) * lightingColor;
+    vec3 diffuse = max(dot(normalize(fragmentNormal), lightDirection), 0.0) * lightingColor;
 
     // Specular calculations
     vec3 viewDirection = normalize(cameraPosition - fragmentPosition);
-    vec3 reflectDirection = reflect(-lightDirection, normal);
+    vec3 reflectDirection = reflect(-lightDirection, fragmentNormal);
     float shininess = 32;
     vec3 specular = specularStrength * pow(max(dot(viewDirection, reflectDirection), 0.0), shininess) * lightingColor;  
 

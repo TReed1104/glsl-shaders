@@ -13,7 +13,7 @@ void main() {
     
     // Diffuse calculations
     vec3 lightDirection = normalize(lightingPosition - fragmentPosition);
-    vec3 diffuse = max(dot(normalize(normal), lightDirection), 0.0) * lightingColor;
+    vec3 diffuse = max(dot(normalize(fragmentNormal), lightDirection), 0.0) * lightingColor;
 
     // Calculate the fragment colour using the vertex colour, ambient and diffuse lighting values
     outputColour = vec4(((ambient + diffuse) * fragmentColour), 1.0);

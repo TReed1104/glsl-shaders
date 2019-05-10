@@ -9,7 +9,7 @@
 
 void main() {
 	if (u_hasTexture) {
-		outputColour = texture2D(u_textureSampler, UV);
+		outputColour = texture2D(u_textureSampler, fragmentUV);
 	}
 	else {
 		// Texturing has not been setup, use the colour buffer.

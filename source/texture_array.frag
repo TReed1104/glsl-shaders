@@ -9,7 +9,7 @@
 
 void main() {
 	if (u_hasTexture) {
-		outputColour = texture(u_textureSampler, vec3(UV, u_textureArrayLayer));
+		outputColour = texture(u_textureSampler, vec3(fragmentUV, u_textureArrayLayer));
 	}
 	else {
 		// Texturing has not been setup, use the colour buffer.
