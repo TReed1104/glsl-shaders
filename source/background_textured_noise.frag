@@ -10,7 +10,7 @@
 #include glsl-shaders/components/global_functions.glsl
 
 void main() {
-	float clampedNosie = mod(noise(gl_FragCoord.xy) * (u_time), 1);
+	float clampedNosie = mod(noise(gl_FragCoord.xy) * (iTime), 1);
 	if(u_hasTexture) {
 		outputColour = texture2D(u_textureSampler, UV) * vec4(vec3(clampedNosie), 1.0f);
 	}
