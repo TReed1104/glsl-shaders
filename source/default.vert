@@ -7,6 +7,7 @@
 
 void main() {
 	// Set our vertex output values, these are what we use inside the fragment shaders
+	fragmentPosition = vec3(u_modelMatrix * vec4(vertexPosition, 1.0));
 	fragmentColour = vertexColor;
 	UV = vertexUV;
 	normal = mat3(transpose(inverse(u_modelMatrix))) * vertexNormal;
