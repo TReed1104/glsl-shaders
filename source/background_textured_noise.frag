@@ -5,6 +5,8 @@
 
 #include glsl-shaders/components/global_uniforms.glsl
 
+#include glsl-shaders/components/texture_uniforms.glsl
+
 #include glsl-shaders/components/global_functions.glsl
 
 void main() {
