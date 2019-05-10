@@ -12,6 +12,10 @@ uniform vec3 iResolution;
 uniform float iTime;
 uniform vec4 iMouse;
 
+// Texturing uniforms
+uniform bool u_hasTexture;
+uniform sampler2DArray u_textureSampler;
+
 float random(vec2 p) {
 	// Pseudo random number generator from seed
 	const vec2 r = vec2(23.1406926327792690, 2.6651441426902251);// e^pi (Gelfond's constant) & 2^sqrt(2) (Gelfond-Schneider constant)
