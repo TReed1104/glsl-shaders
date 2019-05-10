@@ -12,7 +12,7 @@ void main() {
     vec3 ambient = (ambientStrength * lightingColor);
     
     // Diffuse calculations
-    vec3 lightDirection = normalize(lightingPosition - gl_FragCoord);
+    vec3 lightDirection = normalize(lightingPosition - fragmentPosition);
     vec3 diffuse = max(dot(normalize(normal), lightDirection), 0.0) * lightingColor;
 
     // Calculate the fragment colour using the vertex colour, ambient and diffuse lighting values
