@@ -12,17 +12,17 @@
 void main() {
     if (u_hasTexture) {
         // Ambient
-        vec3 ambient = light.ambient * texture(u_textureSampler, fragmentUV).rgb;
+        vec3 ambient = light.ambientIntensity * texture(u_textureSampler, fragmentUV).rgb;
 
         // Diffuse
         vec3 normal = normalize(fragmentNormal);
         vec3 lightDirection = normalize(light.position - fragmentPosition);
-        vec3 diffuse = light.diffuse * max(dot(normal, lightDirection), 0.0) * texture(u_textureSampler, fragmentUV).rgb;
+        vec3 diffuse = light.diffuseColour * max(dot(normal, lightDirection), 0.0) * texture(u_textureSampler, fragmentUV).rgb;
 
         // Specular
         vec3 viewDirection = normalize(iCameraPosition - fragmentPosition);
         vec3 reflectdirection = reflect(-lightDirection, normal);
-        vec3 specular = light.specular * pow(max(dot(viewDirection, reflectdirection), 0.0f), shininess) * texture(u_textureSampler, fragmentUV).rgb;
+        vec3 specular = light.specularIntensity * pow(max(dot(viewDirection, reflectdirection), 0.0f), shininess) * texture(u_textureSampler, fragmentUV).rgb;
 
         // Attenuation
         float distanceFromLight = length(light.position - fragmentPosition);
@@ -36,17 +36,17 @@ void main() {
     }
     else {
         // Ambient
-        vec3 ambient = light.ambient * fragmentColour;
+        vec3 ambient = light.ambientIntensity * fragmentColour;
 
         // Diffuse
         vec3 normal = normalize(fragmentNormal);
         vec3 lightDirection = normalize(light.position - fragmentPosition);
-        vec3 diffuse = light.diffuse * max(dot(normal, lightDirection), 0.0) * fragmentColour;
+        vec3 diffuse = light.diffuseColour * max(dot(normal, lightDirection), 0.0) * fragmentColour;
 
         // Specular
         vec3 viewDirection = normalize(iCameraPosition - fragmentPosition);
         vec3 reflectdirection = reflect(-lightDirection, normal);
-        vec3 specular = light.specular * pow(max(dot(viewDirection, reflectdirection), 0.0f), shininess) * fragmentColour;
+        vec3 specular = light.specularIntensity * pow(max(dot(viewDirection, reflectdirection), 0.0f), shininess) * fragmentColour;
 
         // Attenuation
         float distanceFromLight = length(light.position - fragmentPosition);
