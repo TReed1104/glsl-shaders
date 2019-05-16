@@ -41,7 +41,6 @@ struct Light {
 uniform Light light;
 
 void main() {
-void main() {
     if (u_hasTexture) {
         // Ambient
         vec3 ambient = light.ambientIntensity * texture(u_textureSampler, vec3(fragmentUV, u_textureArrayLayer)).rgb;
@@ -54,6 +53,7 @@ void main() {
         // Specular
         vec3 viewDirection = normalize(iCameraPosition - fragmentPosition);
         vec3 reflectdirection = reflect(-lightDirection, normal);
+        float shininess = 32;
         vec3 specular = light.specularIntensity * pow(max(dot(viewDirection, reflectdirection), 0.0f), shininess) * texture(u_textureSampler, vec3(fragmentUV, u_textureArrayLayer)).rgb;
 
         // Attenuation
@@ -78,6 +78,7 @@ void main() {
         // Specular
         vec3 viewDirection = normalize(iCameraPosition - fragmentPosition);
         vec3 reflectdirection = reflect(-lightDirection, normal);
+        float shininess = 32;
         vec3 specular = light.specularIntensity * pow(max(dot(viewDirection, reflectdirection), 0.0f), shininess) * fragmentColour;
 
         // Attenuation
@@ -90,5 +91,4 @@ void main() {
         // Set the output colour
         outputColour = vec4((ambient + diffuse + specular), 1.0);
     }
-}
 }
