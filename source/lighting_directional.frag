@@ -18,5 +18,6 @@ void main() {
     float shininess = 32;
     vec3 specular = light.specular * pow(max(dot(normalize(iCameraPosition - fragmentPosition), reflect(-lightDirection, fragmentNormal)), 0.0), shininess) * fragmentColourb;
 
+    // Set the output colour
     outputColour = vec4((ambient + diffuse + specular), 1.0);
 }
