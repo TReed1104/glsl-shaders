@@ -8,7 +8,7 @@
 #include glsl-shaders/components/lighting_uniforms.glsl
 
 void main() {
-            // Ambient
+        // Ambient
         vec3 ambient = light.ambientIntensity * fragmentColour;
 
         // Diffuse

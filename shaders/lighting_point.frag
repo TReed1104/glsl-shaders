@@ -36,7 +36,7 @@ struct Light {
 uniform Light light;
 
 void main() {
-            // Ambient
+        // Ambient
         vec3 ambient = light.ambientIntensity * fragmentColour;
 
         // Diffuse
