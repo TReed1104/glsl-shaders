@@ -7,7 +7,7 @@
 
 #include glsl-shaders/components/texture_uniforms.glsl
 
-#include glsl-shaders/components/lighting_uniforms.glsl
+#include glsl-shaders/components/basic_lighting_uniforms.glsl
 
 void main() {
     // Ambient calculations
