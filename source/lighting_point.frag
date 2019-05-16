@@ -24,7 +24,7 @@ void main() {
 
     // Attenuation
     float distanceFromLight = length(light.position - fragmentPosition);
-    float attenuation = 1.0 / (light.constant + light.linear * distanceFromLight + light.quadratic * (distanceFromLight * distanceFromLight));  
+    float attenuation = 1.0 / (light.attenuationConstant + light.attenuationLinear * distanceFromLight + light.attenuationQuadratic * (distanceFromLight * distanceFromLight));
     ambient *= attenuation;
     diffuse *= attenuation;
     specular *= attenuation;
