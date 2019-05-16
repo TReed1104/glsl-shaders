@@ -36,16 +36,19 @@ struct Light {
 uniform Light light;
 
 void main() {
-    // Ambient
-    vec3 ambient = light.ambient * fragmentColour;
+       // Ambient
+        vec3 ambient = light.ambient * fragmentColour;
 
-    // Diffuse
-    vec3 diffuse = light.diffuse * (max(dot(normalizee(vertexNormal), normalize(-light.direction)), 0.0)) * fragmentColour;
+        // Diffuse
+        vec3 normal = normalize(fragmentNormal);
+        vec3 lightDirection = normalize(-light.direction);
+        vec3 diffuse = light.diffuse * max(dot(normal, lightDirection), 0.0) * fragmentColour;
 
-    // Specular
-    float shininess = 32;
-    vec3 specular = light.specular * pow(max(dot(normalize(iCameraPosition - fragmentPosition), reflect(-lightDirection, fragmentNormal)), 0.0), shininess) * fragmentColourb;
+        // Specular
+        vec3 viewDirection = normalize(iCameraPosition - fragmentPosition);
+        vec3 reflectdirection = reflect(-lightDirection, normal);
+        vec3 specular = light.specular * pow(max(dot(viewDirection, reflectdirection), 0.0f), shininess) * fragmentColour;
 
-    // Set the output colour
-    outputColour = vec4((ambient + diffuse + specular), 1.0);
+        // Set the output colour
+        outputColour = vec4((ambient + diffuse + specular), 1.0);
 }
