@@ -12,9 +12,9 @@ struct Light {
     float outerCutOff;
     
     // Attenuation
-    float constant;
-    float linear;
-    float quadratic;
+    float attenuationConstant;
+    float attenuationLinear;
+    float attenuationQuadratic;
 };
 
 uniform Light light;
