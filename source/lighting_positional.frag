@@ -5,9 +5,7 @@
 
 #include glsl-shaders/components/global_uniforms.glsl
 
-#include glsl-shaders/components/texture_uniforms.glsl
-
-#include glsl-shaders/components/basic_lighting_uniforms.glsl
+#include glsl-shaders/components/lighting_uniforms_basic.glsl
 
 void main() {
     // Ambient calculations
@@ -23,11 +21,6 @@ void main() {
     float shininess = 32;
     vec3 specular = specularStrength * pow(max(dot(viewDirection, reflectDirection), 0.0), shininess) * lightingColor;  
 
-    if (u_hasTexture) {
-        outputColour = texture2D(u_textureSampler, fragmentUV) * vec4((ambient + diffuse + specular), 1.0);
-    }
-    else {
-        // Calculate the fragment colour using the vertex colour, ambient, diffuse and specular lighting values
-        outputColour = vec4(((ambient + diffuse + specular) * fragmentColour), 1.0);
-    }
+    // Calculate the fragment colour using the vertex colour, ambient, diffuse and specular lighting values
+    outputColour = vec4(((ambient + diffuse + specular) * fragmentColour), 1.0);
 }
