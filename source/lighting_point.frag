@@ -9,7 +9,7 @@
 
 void main() {
     // Ambient
-    vec3 ambient = light.ambientIntensity * fragmentColour;
+    vec3 ambient = light.ambientColour * fragmentColour;
     
     // Diffuse
     vec3 normal = normalize(fragmentNormal);
@@ -20,7 +20,7 @@ void main() {
     vec3 viewDirection = normalize(iCameraPosition - fragmentPosition);
     vec3 reflectdirection = reflect(-lightDirection, normal);
     float shininess = 32;
-    vec3 specular = light.specularIntensity * pow(max(dot(viewDirection, reflectdirection), 0.0f), shininess) * fragmentColour;
+    vec3 specular = light.specularColour * pow(max(dot(viewDirection, reflectdirection), 0.0f), shininess) * fragmentColour;
 
     // Attenuation
     float distanceFromLight = length(light.position - fragmentPosition);

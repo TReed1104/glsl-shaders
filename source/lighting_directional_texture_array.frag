@@ -12,7 +12,7 @@
 void main() {
     if (u_hasTexture) {
         // Ambient
-        vec3 ambient = light.ambientIntensity * texture(u_textureSampler, vec3(fragmentUV, u_textureArrayLayer)).rgb;
+        vec3 ambient = light.ambientColour * texture(u_textureSampler, vec3(fragmentUV, u_textureArrayLayer)).rgb;
 
         // Diffuse
         vec3 normal = normalize(fragmentNormal);
@@ -23,14 +23,14 @@ void main() {
         vec3 viewDirection = normalize(iCameraPosition - fragmentPosition);
         vec3 reflectdirection = reflect(-lightDirection, normal);
         float shininess = 32;
-        vec3 specular = light.specularIntensity * pow(max(dot(viewDirection, reflectdirection), 0.0f), shininess) * texture(u_textureSampler, vec3(fragmentUV, u_textureArrayLayer)).rgb;
+        vec3 specular = light.specularColour * pow(max(dot(viewDirection, reflectdirection), 0.0f), shininess) * texture(u_textureSampler, vec3(fragmentUV, u_textureArrayLayer)).rgb;
 
         // Set the output colour
         outputColour = vec4((ambient + diffuse + specular), 1.0);
     }
     else {
         // Ambient
-        vec3 ambient = light.ambientIntensity * fragmentColour;
+        vec3 ambient = light.ambientColour * fragmentColour;
 
         // Diffuse
         vec3 normal = normalize(fragmentNormal);
@@ -41,7 +41,7 @@ void main() {
         vec3 viewDirection = normalize(iCameraPosition - fragmentPosition);
         vec3 reflectdirection = reflect(-lightDirection, normal);
         float shininess = 32;
-        vec3 specular = light.specularIntensity * pow(max(dot(viewDirection, reflectdirection), 0.0f), shininess) * fragmentColour;
+        vec3 specular = light.specularColour * pow(max(dot(viewDirection, reflectdirection), 0.0f), shininess) * fragmentColour;
 
         // Set the output colour
         outputColour = vec4((ambient + diffuse + specular), 1.0);
