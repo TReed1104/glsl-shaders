@@ -5,9 +5,9 @@ struct Light {
     vec3 direction;
 
     // Colours and intensities
-    vec3 ambientIntensity;
+    vec3 ambientColour;
     vec3 diffuseColour;
-    vec3 specularIntensity;
+    vec3 specularColour;
 
     // Spotlighting
     float spotlightCutOff;
