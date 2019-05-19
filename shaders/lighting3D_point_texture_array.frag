@@ -16,10 +16,11 @@ uniform vec3 iCameraPosition;
 
 // Texturing uniforms
 uniform bool u_hasTexture;
-uniform sampler2D u_textureSampler;
+uniform sampler2DArray u_textureSampler;
+uniform int u_textureArrayLayer;
 
 // Light Struct, encapsulates the light attributes
-struct Light {
+struct Light3D {
     // General lighting attributes
     vec3 position; 
     vec3 direction;
@@ -39,23 +40,23 @@ struct Light {
     float attenuationQuadratic;
 };
 
-uniform Light light;
+uniform Light3D light;
 
 void main() {
     if (u_hasTexture) {
         // Ambient
-        vec3 ambient = light.ambientColour * texture(u_textureSampler, fragmentUV).rgb;
+        vec3 ambient = light.ambientColour * texture(u_textureSampler, vec3(fragmentUV, u_textureArrayLayer)).rgb;
 
         // Diffuse
         vec3 normal = normalize(fragmentNormal);
         vec3 lightDirection = normalize(light.position - fragmentPosition);
-        vec3 diffuse = light.diffuseColour * max(dot(normal, lightDirection), 0.0) * texture(u_textureSampler, fragmentUV).rgb;
+        vec3 diffuse = light.diffuseColour * max(dot(normal, lightDirection), 0.0) * texture(u_textureSampler, vec3(fragmentUV, u_textureArrayLayer)).rgb;
 
         // Specular
         vec3 viewDirection = normalize(iCameraPosition - fragmentPosition);
         vec3 reflectdirection = reflect(-lightDirection, normal);
         float shininess = 32;
-        vec3 specular = light.specularColour * pow(max(dot(viewDirection, reflectdirection), 0.0f), shininess) * texture(u_textureSampler, fragmentUV).rgb;
+        vec3 specular = light.specularColour * pow(max(dot(viewDirection, reflectdirection), 0.0f), shininess) * texture(u_textureSampler, vec3(fragmentUV, u_textureArrayLayer)).rgb;
 
         // Attenuation
         float distanceFromLight = length(light.position - fragmentPosition);
@@ -65,7 +66,7 @@ void main() {
         specular *= attenuation;
 
         // Set the output colour
-        outputColour = vec4((ambient + diffuse + specular), texture(u_textureSampler, fragmentUV).a);
+        outputColour = vec4((ambient + diffuse + specular), texture(u_textureSampler, vec3(fragmentUV, u_textureArrayLayer)).a);
     }
     else {
         // Ambient

@@ -19,7 +19,7 @@ uniform bool u_hasTexture;
 uniform sampler2D u_textureSampler;
 
 // Light Struct, encapsulates the light attributes
-struct Light {
+struct Light3D {
     // General lighting attributes
     vec3 position; 
     vec3 direction;
@@ -39,7 +39,7 @@ struct Light {
     float attenuationQuadratic;
 };
 
-uniform Light light;
+uniform Light3D light;
 
 void main() {
     if (u_hasTexture) {
@@ -56,13 +56,6 @@ void main() {
         vec3 reflectdirection = reflect(-lightDirection, normal);
         float shininess = 32;
         vec3 specular = light.specularColour * pow(max(dot(viewDirection, reflectdirection), 0.0f), shininess) * texture(u_textureSampler, fragmentUV).rgb;
-
-        // Spotlighting
-        float spotlightTheta = dot(lightDirection, normalize(-light.direction));
-        float spotlightEpsilon = (light.spotlightCutOff - light.spotlightCutOffOuter);
-        float spotlightIntensity = clamp((spotlightTheta - light.spotlightCutOffOuter) / spotlightEpsilon, 0.0, 1.0);
-        diffuse *= spotlightIntensity;
-        specular *= spotlightIntensity;
 
         // Attenuation
         float distanceFromLight = length(light.position - fragmentPosition);
@@ -88,13 +81,6 @@ void main() {
         vec3 reflectdirection = reflect(-lightDirection, normal);
         float shininess = 32;
         vec3 specular = light.specularColour * pow(max(dot(viewDirection, reflectdirection), 0.0f), shininess) * fragmentColour;
-
-        // Spotlighting
-        float spotlightTheta = dot(lightDirection, normalize(-light.direction));
-        float spotlightEpsilon = (light.spotlightCutOff - light.spotlightCutOffOuter);
-        float spotlightIntensity = clamp((spotlightTheta - light.spotlightCutOffOuter) / spotlightEpsilon, 0.0, 1.0);
-        diffuse *= spotlightIntensity;
-        specular *= spotlightIntensity;
 
         // Attenuation
         float distanceFromLight = length(light.position - fragmentPosition);

@@ -15,7 +15,7 @@ uniform vec4 iMouse;
 uniform vec3 iCameraPosition;
 
 // Light Struct, encapsulates the light attributes
-struct Light {
+struct Light3D {
     // General lighting attributes
     vec3 position; 
     vec3 direction;
@@ -35,7 +35,7 @@ struct Light {
     float attenuationQuadratic;
 };
 
-uniform Light light;
+uniform Light3D light;
 
 void main() {
     // Ambient
