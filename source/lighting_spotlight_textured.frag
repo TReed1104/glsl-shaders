@@ -7,7 +7,7 @@
 
 #include glsl-shaders/components/texture_uniforms.glsl
 
-#include glsl-shaders/components/lighting_uniforms.glsl
+#include glsl-shaders/components/3d_lighting_uniforms.glsl
 
 void main() {
     if (u_hasTexture) {

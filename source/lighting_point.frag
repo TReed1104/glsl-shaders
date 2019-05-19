@@ -5,7 +5,7 @@
 
 #include glsl-shaders/components/global_uniforms.glsl
 
-#include glsl-shaders/components/lighting_uniforms.glsl
+#include glsl-shaders/components/3d_lighting_uniforms.glsl
 
 void main() {
     // Ambient
