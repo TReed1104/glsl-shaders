@@ -7,7 +7,6 @@
 
 #include glsl-shaders/components/lighting2D_uniforms.glsl
 
-
 void main() {
     // Calculate the distance to the light
     vec3 distanceFromLight = (light.position - fragmentPosition);
